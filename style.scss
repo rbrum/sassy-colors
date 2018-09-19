@@ -1,0 +1,62 @@
+// 1. Set up colors list. Change it at any time.
+
+$colors: (
+  black: #000000,
+  white: #FFFFFF,
+  red:   #CC0000,
+  // ...
+);
+
+// 2. Mixin to lighten BG color on hover. This is optional.
+
+@mixin hover-lighten-bg($color-value) {
+  background: $color-value;
+  &:hover {
+    background: lighten($color-value, 25%); // use whatever % you want
+  }
+}
+
+// 3. Mixin to generate named color class names, using the above mixin
+
+@mixin add-bg-color-class($color-name) {
+  &.#{$color-name} {
+    @include hover-lighten-bg(map-get($colors, $color-name));
+  }
+}
+
+// 4. Place the following wherever you want. I used .tile as an example
+// (all .tile elements can also have a color class name: e.g. .tile.red).
+
+.tile {
+
+  @each $color in $colors {
+    $color-key: nth($color, 1);
+    @include add-bg-color-class($color-key);
+  }
+
+}
+
+/**
+ * You will see something similar to the following:
+
+.tile.black {
+  background: #000000;
+}
+.tile.black:hover {
+  background: #404040;
+}
+.tile.white {
+  background: #FFFFFF;
+}
+.tile.white:hover {
+  background: white; /* <-- SCSS did this, not me */
+}
+.tile.red {
+  background: #CC0000;
+}
+.tile.red:hover {
+  background: #ff4d4d;
+}
+
+ * 
+ */
