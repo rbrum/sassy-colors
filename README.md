@@ -34,4 +34,16 @@ $colors: (
 }
 ```
 
+...assuming you placed the `@each` within a `.tile` declaration, like so:
+
+```scss
+.tile {
+  @each $color in $colors {
+    ...
+  }
+}
+```
+
+___
+
 **NOTE:** [1] SCSS spits out the CSS color name `white` via the `lighten()` function. It wasn't me, I swear!
