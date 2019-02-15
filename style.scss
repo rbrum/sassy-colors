@@ -49,7 +49,7 @@ $colors: (
   background: #FFFFFF;
 }
 .tile.white:hover {
-  background: white; /* <-- SCSS did this, not me */
+  background: white; // <-- SCSS did this, not me
 }
 .tile.red {
   background: #CC0000;
